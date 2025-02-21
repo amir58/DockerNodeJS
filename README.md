@@ -22,7 +22,7 @@ Ensure you have the following installed on your system:
 
 ```sh
 git clone -b #04-Dockerfile https://github.com/amir58/DockerNodeJS.git
-cd Docker
+cd DockerNodeJS
 ```
 
 ### 2️⃣ Build the Docker Image
