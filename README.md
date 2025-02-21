@@ -21,7 +21,7 @@ Ensure you have the following installed on your system:
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone -b #04-Dockerfile https://github.com/amir58/Docker.git
+git clone -b #04-Dockerfile https://github.com/amir58/DockerNodeJS.git
 cd Docker
 ```
 
