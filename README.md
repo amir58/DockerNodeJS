@@ -21,7 +21,7 @@ Ensure you have the following installed on your system:
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone -b #03-Setup-NodeJS-Application https://github.com/amir58/Docker.git
+git clone -b #04-Dockerfile https://github.com/amir58/Docker.git
 cd Docker
 ```
 
@@ -116,4 +116,4 @@ docker run --name tresmerg-docker-node-app-container -d -p 4000:4000 tresmerg-do
 > - This allows the application inside the container to be accessed at:  
 >   ```
 >   http://localhost:4000
->   
+>   ```
