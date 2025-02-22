@@ -9,8 +9,6 @@ This guide explains how to use **Docker Compose** to manage multi-container appl
 Create a `docker-compose.yml` file with the following configuration:
 
 ```yaml
-version: '3.8'
-
 services:
   node-app:
     container_name: node-app-container
