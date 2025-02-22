@@ -41,6 +41,20 @@ docker logs tresmerg-docker-node-app
 > - `docker logs` → Fetches the logs of a running container.  
 > - `tresmerg-docker-node-app` → The container name to check logs for.
 
+### 4️⃣ View File Contents Inside Container
+
+To check the contents of a file inside the running container:
+
+```sh
+docker exec -it tresmerg-docker-node-app-container cat /app/package.json
+```
+
+> **Explanation:**  
+> - `docker exec` → Runs a command inside an existing container.  
+> - `-it` → Runs in interactive mode.  
+> - `tresmerg-docker-node-app-container` → The container name.  
+> - `cat /app/package.json` → Displays the contents of `package.json` inside the container.
+
 ---
 
 With these steps, any changes made to your local project files will reflect inside the running Docker container in real-time! 🚀
