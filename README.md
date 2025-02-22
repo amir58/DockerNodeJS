@@ -6,7 +6,17 @@ This guide explains how to enable **hot reloading** for a Dockerized Node.js app
 
 ## 🛠️ Setting Up Hot Reload
 
-### 1️⃣ Build the Docker Image
+### 1️⃣ Edit the Dockerfile
+
+Modify the `CMD` instruction in the `Dockerfile` to enable hot reload:
+
+```dockerfile
+CMD [ "npm", "run", "start-dev" ]
+```
+
+This ensures that the application runs in development mode with hot reload enabled.
+
+### 2️⃣ Build the Docker Image
 
 Before enabling hot reload, ensure the Docker image is built:
 
@@ -14,7 +24,7 @@ Before enabling hot reload, ensure the Docker image is built:
 docker build -t tresmerg-docker-node-app .
 ```
 
-### 2️⃣ Run the Container with Volume Mounting
+### 3️⃣ Run the Container with Volume Mounting
 
 To enable hot reload, map the local project directory to the container:
 
@@ -29,7 +39,7 @@ docker run --name tresmerg-docker-node-app-container -v project_path:/app -d -p 
 > - `-p 4000:4000` → Maps **port 4000 of the host** to **port 4000 inside the container**.  
 > - `tresmerg-docker-node-app` → Runs the container using this image.
 
-### 3️⃣ View Container Logs
+### 4️⃣ View Container Logs
 
 To monitor logs and verify that hot reload is working:
 
@@ -41,7 +51,7 @@ docker logs tresmerg-docker-node-app
 > - `docker logs` → Fetches the logs of a running container.  
 > - `tresmerg-docker-node-app` → The container name to check logs for.
 
-### 4️⃣ View File Contents Inside Container
+### 5️⃣ View File Contents Inside Container
 
 To check the contents of a file inside the running container:
 
