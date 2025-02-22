@@ -29,12 +29,12 @@ docker build -t tresmerg-docker-node-app .
 To enable hot reload, map the local project directory to the container:
 
 ```sh
-docker run --name tresmerg-docker-node-app-container -v project_path:/app -d -p 4000:4000 tresmerg-docker-node-app
+docker run --name tresmerg-docker-node-app-container -v /Users/username/backend/tresmerg-docker:/app -d -p 4000:4000 tresmerg-docker-node-app
 ```
 
 > **Explanation:**  
 > - `--name tresmerg-docker-node-app-container` → Assigns a custom name to the container.  
-> - `-v project_path:/app` → Maps the local **project_path** (copy relative path from Explorer) to `/app` inside the container. This ensures real-time updates.  
+> - `-v /Users/username/backend/tresmerg-docker:/app` → Maps the local **absolute project path** to `/app` inside the container. This ensures real-time updates.  
 > - `-d` → Runs the container in **detached mode**.  
 > - `-p 4000:4000` → Maps **port 4000 of the host** to **port 4000 inside the container**.  
 > - `tresmerg-docker-node-app` → Runs the container using this image.
@@ -51,19 +51,23 @@ docker logs tresmerg-docker-node-app
 > - `docker logs` → Fetches the logs of a running container.  
 > - `tresmerg-docker-node-app` → The container name to check logs for.
 
-### 5️⃣ View File Contents Inside Container
+### 5️⃣ Open Container Terminal and View File Contents
 
-To check the contents of a file inside the running container:
+To access the container's terminal and inspect files inside:
 
 ```sh
-docker exec -it tresmerg-docker-node-app-container cat /app/package.json
+docker exec -it tresmerg-docker-node-app-container bash
+```
+
+Once inside the container, use:
+
+```sh
+cat index.js
 ```
 
 > **Explanation:**  
-> - `docker exec` → Runs a command inside an existing container.  
-> - `-it` → Runs in interactive mode.  
-> - `tresmerg-docker-node-app-container` → The container name.  
-> - `cat /app/package.json` → Displays the contents of `package.json` inside the container.
+> - `docker exec -it tresmerg-docker-node-app-container bash` → Opens an interactive terminal session inside the container.  
+> - `cat index.js` → Displays the contents of `index.js` inside the container.
 
 ---
 
