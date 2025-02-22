@@ -28,7 +28,7 @@ cd DockerNodeJS
 ### 2️⃣ Build the Docker Image
 
 ```sh
-docker build -t express-node-app .
+docker build -t tresmerg-express-node-app .
 ```
 > **Explanation**:  
 > - `docker build` → Creates a Docker image from the `Dockerfile`.  
