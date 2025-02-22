@@ -10,8 +10,10 @@ Before running the following commands, it is recommended to create a `.dockerign
 
 ### Example `.dockerignore` file:
 ```plaintext
-node_modules
+/node_modules
+Dockerfile
 .env
+README.md
 .DS_Store
 .git
 ```
