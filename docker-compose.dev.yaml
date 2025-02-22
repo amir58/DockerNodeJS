@@ -1,0 +1,7 @@
+services:
+  node-app:
+    build: .
+    volumes:
+      - ./src:/app/src:ro
+    environment:
+      - NODE_ENV=dev
