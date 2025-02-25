@@ -1,6 +1,7 @@
 const express = require( 'express' );
 const mongoose = require( 'mongoose' );
 const redis = require( 'redis' );
+const pg = require( 'pg' );
 
 const PORT = 4000;
 const app = express();
@@ -36,6 +37,23 @@ redisClient.on( 'error', ( error ) => {
 } )
 redisClient.connect()
 
+
+const PG_USER = 'root'
+const PG_PASSWORD = 'example'
+const PG_PORT = 5432
+const PG_HOST = 'postgres'
+
+const PG_URI = `postgres://${ PG_USER }:${ PG_PASSWORD }@${ PG_HOST }:${ PG_PORT }`
+
+const client = new pg.Client( PG_URI );
+
+client.connect()
+    .then( () => {
+        console.log( 'Connected to PostgreSQL' );
+    } )
+    .catch( ( error ) => {
+        console.log( `PostgreSQL error: ${ error } ` );
+    } );
 
 app.get( '/', ( req, res ) => {
     res.send( '<h1>Hello Tresmerg!</h1>' );
