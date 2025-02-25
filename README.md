@@ -1182,7 +1182,7 @@ volumes:
 ### 1️⃣ Start Containers
 
 ```sh
-docker-compose up -d
+tresmerg-docker % docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
 ```
 
 ### 2️⃣ Test Node.js App via Nginx
