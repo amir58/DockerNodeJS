@@ -47,13 +47,13 @@ const PG_URI = `postgres://${ PG_USER }:${ PG_PASSWORD }@${ PG_HOST }:${ PG_PORT
 
 const client = new pg.Client( PG_URI );
 
-client.connect( () => {
-    console.log( 'Connected to PostgreSQL' );
-} );
-
-client.on( 'error', ( error ) => {
-    console.log( `PostgreSQL error: ${ error } ` );
-} );
+client.connect()
+    .then( () => {
+        console.log( 'Connected to PostgreSQL' );
+    } )
+    .catch( ( error ) => {
+        console.log( `PostgreSQL error: ${ error } ` );
+    } );
 
 app.get( '/', ( req, res ) => {
     res.send( '<h1>Hello Tresmerg!</h1>' );
