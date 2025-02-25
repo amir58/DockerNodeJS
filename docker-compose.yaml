@@ -35,5 +35,19 @@ services:
   redis:
     image: redis
 
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80" 
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - node-app
+    # environment:
+      # - NGINX_HOST=foobar.com
+      # - NGINX_PORT=80
+
+
+
 volumes:
   mongo-db:
