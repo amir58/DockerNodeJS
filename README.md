@@ -1180,8 +1180,10 @@ services:
 
 volumes:
   mongo-db:
+```
 
 ```yaml
+
 
 > **Explanation:**  
 > - `image: nginx` → Uses the official Nginx image.  
