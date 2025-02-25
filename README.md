@@ -1125,6 +1125,14 @@ Modify `docker-compose.yml` to include the **Nginx** service:
       - node-app
 ```
 
+> **Explanation:**  
+> - `image: nginx` → Uses the official Nginx image.  
+> - `ports: "8080:80"` → Exposes Nginx on **port 8080** and forwards requests to **port 80** inside the container.  
+> - `volumes: ./nginx/default.conf:/etc/nginx/conf.d/default.conf` → Mounts the custom **Nginx configuration**.  
+> - `depends_on: node-app` → Ensures **Node.js** starts before Nginx.
+
+Full file 
+
 ```yaml
 
 services:
@@ -1183,13 +1191,6 @@ volumes:
 ```
 
 ```yaml
-
-
-> **Explanation:**  
-> - `image: nginx` → Uses the official Nginx image.  
-> - `ports: "8080:80"` → Exposes Nginx on **port 8080** and forwards requests to **port 80** inside the container.  
-> - `volumes: ./nginx/default.conf:/etc/nginx/conf.d/default.conf` → Mounts the custom **Nginx configuration**.  
-> - `depends_on: node-app` → Ensures **Node.js** starts before Nginx.
 
 ---
 
