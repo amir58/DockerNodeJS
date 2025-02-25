@@ -1,5 +1,6 @@
 const express = require( 'express' );
 const mongoose = require( 'mongoose' );
+const redis = require( 'redis' );
 
 const PORT = 4000;
 const app = express();
@@ -19,6 +20,22 @@ mongoose.connect( URI )
     .catch( ( error ) => {
         console.log( error );
     } );
+
+const REDIS_HOST = 'redis';
+const REDIS_PORT = '6379';
+
+const redisClient = redis.createClient(
+    { url: `redis://${ REDIS_HOST }:${ REDIS_PORT }` }
+);
+
+redisClient.on( 'connect', () => {
+    console.log( 'Conntect to Redis...' );
+} )
+redisClient.on( 'error', ( error ) => {
+    console.log( error );
+} )
+redisClient.connect()
+
 
 app.get( '/', ( req, res ) => {
     res.send( '<h1>Hello Tresmerg!</h1>' );
