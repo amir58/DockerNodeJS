@@ -1111,9 +1111,10 @@ server {
 
 ## 🛠️ 4 - Update `docker-compose.yml`
 
-Modify `docker-compose.yml` to include the **Nginx** service:
+Modify `docker-compose.yml` to include the **Nginx** service along with MongoDB, Redis, and Mongo-Express:
 
 ```yaml
+version: '3.8'
 
 services:
   node-app:
@@ -1140,7 +1141,7 @@ services:
     image: mongo-express
     restart: always
     ports:
-      - 8081:8081
+      - "8081:8081"
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
@@ -1155,7 +1156,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - "8080:80" 
+      - "8080:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
@@ -1164,13 +1165,9 @@ services:
       # - NGINX_HOST=foobar.com
       # - NGINX_PORT=80
 
-
-
 volumes:
   mongo-db:
 ```
-
-```yaml
 
 > **Explanation:**  
 > - `image: nginx` → Uses the official Nginx image.  
@@ -1201,4 +1198,3 @@ If everything is set up correctly, it should display your **Node.js app content*
 ---
 
 By integrating **Nginx** with **Docker**, you can efficiently manage traffic and create a **scalable reverse proxy** for your applications! 🚀
-
