@@ -1114,16 +1114,6 @@ server {
 Modify `docker-compose.yml` to include the **Nginx** service:
 
 ```yaml
-version: '3.8'
-
-services:
-  node-app:
-    container_name: node-app-container
-    build: .
-    ports:
-      - "4000:4000"
-    env_file:
-      - ./.env
 
   nginx:
     image: nginx
@@ -1134,6 +1124,64 @@ services:
     depends_on:
       - node-app
 ```
+
+```yaml
+
+services:
+  node-app:
+    container_name: node-app-container
+    build: .
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./.env
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongo-db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongo
+
+  redis:
+    image: redis
+
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80" 
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - node-app
+    # environment:
+      # - NGINX_HOST=foobar.com
+      # - NGINX_PORT=80
+
+
+
+volumes:
+  mongo-db:
+
+```yaml
 
 > **Explanation:**  
 > - `image: nginx` → Uses the official Nginx image.  
